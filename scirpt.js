@@ -3,6 +3,9 @@ const context = canvas.getContext('2d');
 
 const score_field = document.getElementById('score');
 
+const penguinPic = new Image();
+penguinPic.src = 'images/penguin.png';
+
 const enemy_one = new Image();
 enemy_one.src = 'images/enemy_1.png';
 
@@ -18,7 +21,7 @@ const penguin = {
     x: 100,
     y: 570,
     height: 100,
-    width: 50,
+    width: 70,
     //penguins jumping force
     force: 20,
     score: 0,
@@ -40,13 +43,13 @@ const enemy = {
     enemy1: {
         x: canvas.width,
         y: 597,
-        height: 75,
-        width: 150,
+        height: 100,
+        width: 100,
         done: 0
     },
     enemy2: {
         x: canvas.width + 750,
-        y: 554,
+        y: 570,
         height: 125,
         width: 95,
         done: 0
@@ -61,7 +64,7 @@ function drawer() {
     context.drawImage(background, background_loop.two.x, 0, canvas.width, canvas.height);
 
     //drawing hero
-    context.fillRect(penguin.x, penguin.y, penguin.width, penguin.height);
+    context.drawImage(penguinPic,penguin.x, penguin.y, penguin.width, penguin.height);
 
     //drawing enemies
     context.drawImage(enemy_one, enemy.enemy1.x, enemy.enemy1.y, enemy.enemy1.width, enemy.enemy1.height);
@@ -94,7 +97,7 @@ function drawer() {
         }
 
         if(penguin.score % 10 === 0 && penguin.score !== 0 && penguin.change !== penguin.score){
-            if(enemy.enemy1.width === 150){
+            if(enemy.enemy1.width === 100){
                 background.src = 'images/background_2.jpg';
                 enemy.enemy1.width = 75;
                 enemy.enemy1.height = 125;
